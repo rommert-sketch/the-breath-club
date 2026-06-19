@@ -1,0 +1,107 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: var(--color-midnight-water);
+  border-bottom: 1px solid rgba(74, 122, 138, 0.2);
+  padding: 0 var(--space-8);
+}
+
+.navbar__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.navbar__logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  color: var(--color-nordic-linen);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.navbar__logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+
+.navbar__logo-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  color: var(--color-nordic-linen);
+  letter-spacing: 0.02em;
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Hamburger */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: var(--space-2);
+  background: none;
+  border: none;
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--color-nordic-linen);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.navbar__hamburger--open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.navbar__hamburger--open span:nth-child(2) { opacity: 0; }
+.navbar__hamburger--open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile drawer */
+.navbar__drawer {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-8) var(--space-8);
+  border-top: 1px solid rgba(74, 122, 138, 0.15);
+}
+
+.navbar__drawer--open {
+  display: flex;
+}
+
+@media (max-width: 640px) {
+  .navbar__actions {
+    display: none;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  .navbar {
+    position: sticky;
+    top: 0;
+  }
+
+  .navbar__drawer {
+    background: var(--color-midnight-water);
+  }
+}

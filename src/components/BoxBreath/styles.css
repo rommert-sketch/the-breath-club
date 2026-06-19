@@ -1,0 +1,141 @@
+.box-breath {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 520px;
+  height: 520px;
+  margin: 0 auto;
+}
+
+/* ─── Floating ambient words ─── */
+.box-breath__word {
+  position: absolute;
+  font-family: var(--font-soft);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 18px;
+  color: var(--color-nordic-linen);
+  opacity: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.04em;
+}
+
+/* Organic scatter around the outside of the 320px square (centred in 520px) */
+.box-breath__word--stillness   { top: 4%;   left: 8%; }
+.box-breath__word--awareness   { top: 8%;   right: 6%; }
+.box-breath__word--medicine    { top: 30%;  right: 1%; }
+.box-breath__word--cacao       { bottom: 28%; right: 2%; }
+.box-breath__word--microdosing { bottom: 5%; right: 10%; }
+.box-breath__word--breathe     { bottom: 4%; left: 12%; }
+.box-breath__word--authentic   { bottom: 28%; left: 1%; }
+.box-breath__word--release     { top: 30%;  left: 2%; }
+
+/* ─── Square ─── */
+.box-breath__square {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  border: 2px solid var(--color-glacier-stone);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Side labels ─── */
+.box-breath__side-label {
+  position: absolute;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-glacier-stone);
+  opacity: 0.4;
+  transition: opacity 0.4s ease, color 0.4s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.box-breath__side-label--active {
+  opacity: 1;
+  color: var(--color-nordic-linen);
+}
+
+/* Left label (Inhale) — rotated, sits outside left edge */
+.box-breath__side-label--left {
+  left: -56px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+/* Top label (Hold) */
+.box-breath__side-label--top {
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Right label (Exhale) — rotated, sits outside right edge */
+.box-breath__side-label--right {
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* Bottom label (Rest) */
+.box-breath__side-label--bottom {
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ─── Travelling dot ─── */
+.box-breath__dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-amber-light);
+  box-shadow: 0 0 12px var(--color-amber-light), 0 0 24px rgba(212, 137, 74, 0.4);
+  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transition: box-shadow 0.3s ease;
+}
+
+/* ─── Center phase word ─── */
+.box-breath__phase {
+  font-family: var(--font-soft);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--text-3xl);
+  color: var(--color-nordic-linen);
+  letter-spacing: 0.04em;
+  text-align: center;
+  user-select: none;
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .box-breath {
+    width: 360px;
+    height: 360px;
+  }
+
+  .box-breath__square {
+    width: 240px;
+    height: 240px;
+  }
+
+  .box-breath__side-label--left  { left: -52px; }
+  .box-breath__side-label--right { right: -56px; }
+
+  .box-breath__phase {
+    font-size: var(--text-2xl);
+  }
+}

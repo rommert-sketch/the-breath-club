@@ -1,0 +1,121 @@
+.breath-circle {
+  position: relative;
+  width: 480px;
+  height: 480px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Concentric rings ─── */
+.breath-circle__ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(196, 135, 74, 0.35);
+  animation: bc-pulse 10s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.breath-circle__ring--1 {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(238, 232, 223, 0.06) 0%, transparent 70%);
+  animation-delay: 0s;
+}
+
+.breath-circle__ring--2 {
+  width: 76%;
+  height: 76%;
+  border-color: rgba(196, 135, 74, 0.45);
+  background: radial-gradient(circle, rgba(238, 232, 223, 0.09) 0%, transparent 70%);
+  animation-delay: -0.4s;
+}
+
+.breath-circle__ring--3 {
+  width: 52%;
+  height: 52%;
+  border-color: rgba(196, 135, 74, 0.6);
+  background: radial-gradient(
+    circle at 45% 40%,
+    rgba(245, 240, 232, 0.18) 0%,
+    rgba(196, 135, 74, 0.18) 50%,
+    rgba(196, 135, 74, 0.08) 100%
+  );
+  animation-delay: -0.8s;
+}
+
+/* Innermost glowing core */
+.breath-circle__core {
+  position: absolute;
+  width: 34%;
+  height: 34%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 40% 35%,
+    rgba(245, 240, 232, 0.55) 0%,
+    rgba(196, 135, 74, 0.45) 55%,
+    rgba(196, 135, 74, 0.1) 100%
+  );
+  box-shadow:
+    0 0 40px rgba(196, 135, 74, 0.35),
+    0 0 80px rgba(196, 135, 74, 0.15);
+  animation: bc-core 10s ease-in-out infinite;
+}
+
+/* ─── Center label ─── */
+.breath-circle__label {
+  position: relative;
+  z-index: 10;
+  font-family: var(--font-soft);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--text-lg);
+  color: rgba(238, 232, 223, 0.9);
+  letter-spacing: 0.06em;
+  user-select: none;
+}
+
+/* ─── Orbital words — static positions, always upright ─── */
+.breath-circle__word {
+  position: absolute;
+  font-family: var(--font-soft);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--text-sm);
+  color: rgba(196, 135, 74, 0.65);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.breath-circle__word--stillness  { top: 3%;    left: 50%; transform: translateX(-50%); }
+.breath-circle__word--presence   { top: 17%;   right: 2%; }
+.breath-circle__word--surrender  { bottom: 25%; right: 0%; }
+.breath-circle__word--peace      { bottom: 4%;  right: 18%; }
+.breath-circle__word--awareness  { bottom: 4%;  left: 12%; }
+.breath-circle__word--release    { bottom: 25%; left: 0%; }
+
+/* ─── Keyframes ─── */
+@keyframes bc-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  35%       { transform: scale(1.07); opacity: 1; }
+  40%       { transform: scale(1.07); opacity: 1; }
+  90%       { transform: scale(1); opacity: 0.85; }
+}
+
+@keyframes bc-core {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(196, 135, 74, 0.35), 0 0 80px rgba(196, 135, 74, 0.15); }
+  35%       { transform: scale(1.15); box-shadow: 0 0 60px rgba(196, 135, 74, 0.55), 0 0 120px rgba(196, 135, 74, 0.25); }
+  40%       { transform: scale(1.15); }
+  90%       { transform: scale(1); }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .breath-circle {
+    width: 320px;
+    height: 320px;
+  }
+}

@@ -1,0 +1,18 @@
+.section-dark {
+  width: 100%;
+  background: var(--color-midnight-water);
+  padding: var(--space-24) var(--space-8);
+}
+
+.section-dark--centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section-dark__inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}

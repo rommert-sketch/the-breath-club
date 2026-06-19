@@ -1,0 +1,19 @@
+.section-light {
+  width: 100%;
+  background: var(--color-exhale-cream);
+  padding: var(--space-24) var(--space-8);
+  color: var(--color-midnight-water);
+}
+
+.section-light--centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section-light__inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}

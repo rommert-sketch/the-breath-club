@@ -1,0 +1,28 @@
+.headline-dark {
+  font-family: var(--font-display);
+  color: var(--color-nordic-linen);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.headline-dark__bold {
+  display: block;
+  font-weight: 700;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 1;
+}
+
+.headline-dark__italic {
+  display: block;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .headline-dark__bold,
+  .headline-dark__italic {
+    font-size: clamp(36px, 8vw, 64px);
+  }
+}
