@@ -39,12 +39,21 @@
   font-family: var(--font-soft);
   font-style: italic;
   font-weight: 300;
-  font-size: clamp(64px, 7vw, 96px);
+  font-size: clamp(36px, 7vw, 96px);
   color: var(--color-nordic-linen);
   line-height: 1.1;
   letter-spacing: 0.01em;
   max-width: 1000px;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .parallax-divider__bg {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center center;
+    inset: 0;
+  }
 }
 
 .parallax-divider__rule {
