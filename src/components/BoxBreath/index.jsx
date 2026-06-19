@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import './styles.css';
 
-const SIDE_DURATION = 4000; // ms per side
+const SIDE_DURATION = 4000;
 const CYCLE = SIDE_DURATION * 4;
-const SIZE = 320; // must match CSS .box-breath__square width/height
 
 const PHASES = [
   { key: 'inhale', label: 'Inhale', side: 'left' },
@@ -17,32 +16,25 @@ const WORDS = [
   'microdosing', 'breathe', 'authentic', 'release',
 ];
 
-function getDotPosition(elapsed) {
-  const t = (elapsed % CYCLE) / SIDE_DURATION; // 0–4
+// Returns percentage (0–100) so dot tracks the square at any rendered size
+function getDotPercent(elapsed) {
+  const t = (elapsed % CYCLE) / SIDE_DURATION;
   const phase = Math.floor(t);
-  const progress = t - phase; // 0–1 within this side
+  const p = t - phase;
 
-  // Square corners at (0,0) top-left, (SIZE,SIZE) bottom-right
-  // origin is top-left corner of the square element
-  // dot transform is translate(-50%,-50%) so we set top/left to the point
   switch (phase) {
-    case 0: // Inhale: left side, bottom → top
-      return { x: 0, y: SIZE * (1 - progress) };
-    case 1: // Hold: top side, left → right
-      return { x: SIZE * progress, y: 0 };
-    case 2: // Exhale: right side, top → bottom
-      return { x: SIZE, y: SIZE * progress };
-    case 3: // Rest: bottom side, right → left
-      return { x: SIZE * (1 - progress), y: SIZE };
-    default:
-      return { x: 0, y: SIZE };
+    case 0: return { x: 0,   y: (1 - p) * 100 }; // left side, bottom → top
+    case 1: return { x: p * 100, y: 0 };           // top side, left → right
+    case 2: return { x: 100, y: p * 100 };          // right side, top → bottom
+    case 3: return { x: (1 - p) * 100, y: 100 };   // bottom side, right → left
+    default: return { x: 0, y: 100 };
   }
 }
 
 export function BoxBreath() {
   const startRef = useRef(null);
   const rafRef = useRef(null);
-  const [dotPos, setDotPos] = useState({ x: 0, y: SIZE });
+  const [dotPos, setDotPos] = useState({ x: 0, y: 100 });
   const [phaseIndex, setPhaseIndex] = useState(0);
 
   useEffect(() => {
@@ -51,9 +43,8 @@ export function BoxBreath() {
     function tick(now) {
       const elapsed = now - startRef.current;
       const t = (elapsed % CYCLE) / SIDE_DURATION;
-      const phase = Math.floor(t) % 4;
-      setPhaseIndex(phase);
-      setDotPos(getDotPosition(elapsed));
+      setPhaseIndex(Math.floor(t) % 4);
+      setDotPos(getDotPercent(elapsed));
       rafRef.current = requestAnimationFrame(tick);
     }
 
@@ -65,16 +56,13 @@ export function BoxBreath() {
 
   return (
     <div className="box-breath">
-      {/* Ambient floating words */}
       {WORDS.map(word => (
         <span key={word} className={`box-breath__word box-breath__word--${word}`}>
           {word}
         </span>
       ))}
 
-      {/* Square */}
       <div className="box-breath__square">
-        {/* Side labels */}
         {PHASES.map(p => (
           <span
             key={p.key}
@@ -84,13 +72,11 @@ export function BoxBreath() {
           </span>
         ))}
 
-        {/* Travelling dot */}
         <div
           className="box-breath__dot"
-          style={{ left: dotPos.x, top: dotPos.y }}
+          style={{ left: `${dotPos.x}%`, top: `${dotPos.y}%` }}
         />
 
-        {/* Center phase word */}
         <span className="box-breath__phase">{currentPhase.key}</span>
       </div>
     </div>

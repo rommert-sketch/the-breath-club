@@ -22,7 +22,6 @@
   letter-spacing: 0.04em;
 }
 
-/* Organic scatter around the outside of the 320px square (centred in 520px) */
 .box-breath__word--stillness   { top: 4%;   left: 8%; }
 .box-breath__word--awareness   { top: 8%;   right: 6%; }
 .box-breath__word--medicine    { top: 30%;  right: 1%; }
@@ -42,9 +41,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
-/* ─── Side labels ─── */
+/* ─── Side labels — flush against each edge ─── */
 .box-breath__side-label {
   position: absolute;
   font-family: var(--font-body);
@@ -64,30 +64,26 @@
   color: var(--color-nordic-linen);
 }
 
-/* Left label (Inhale) — rotated, sits outside left edge */
 .box-breath__side-label--left {
-  left: -56px;
+  left: -48px;
   top: 50%;
   transform: translateY(-50%) rotate(-90deg);
 }
 
-/* Top label (Hold) */
 .box-breath__side-label--top {
-  top: -28px;
+  top: -24px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-/* Right label (Exhale) — rotated, sits outside right edge */
 .box-breath__side-label--right {
-  right: -60px;
+  right: -52px;
   top: 50%;
   transform: translateY(-50%) rotate(90deg);
 }
 
-/* Bottom label (Rest) */
 .box-breath__side-label--bottom {
-  bottom: -28px;
+  bottom: -24px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -101,10 +97,7 @@
   background: var(--color-amber-light);
   box-shadow: 0 0 12px var(--color-amber-light), 0 0 24px rgba(212, 137, 74, 0.4);
   transform: translate(-50%, -50%);
-  top: 0;
-  left: 0;
   pointer-events: none;
-  transition: box-shadow 0.3s ease;
 }
 
 /* ─── Center phase word ─── */
@@ -120,26 +113,28 @@
   opacity: 0.9;
 }
 
-/* Responsive */
+/* ─── Mobile ─── */
 @media (max-width: 768px) {
   .box-breath {
-    width: min(320px, 90vw);
-    height: min(320px, 90vw);
+    width: min(308px, calc(100vw - 48px));
+    height: min(308px, calc(100vw - 48px));
   }
 
   .box-breath__square {
-    width: min(200px, 58vw);
-    height: min(200px, 58vw);
+    width: min(260px, calc(100vw - 48px));
+    height: min(260px, calc(100vw - 48px));
+    border-radius: 18px;
   }
 
+  /* Hide ambient words — too cluttered on small screens */
   .box-breath__word {
-    font-size: 13px;
+    display: none;
   }
 
-  .box-breath__side-label--left  { left: -48px; }
-  .box-breath__side-label--right { right: -52px; }
-  .box-breath__side-label--top   { top: -24px; }
-  .box-breath__side-label--bottom { bottom: -24px; }
+  .box-breath__side-label--left  { left: -44px; }
+  .box-breath__side-label--right { right: -48px; }
+  .box-breath__side-label--top   { top: -22px; }
+  .box-breath__side-label--bottom { bottom: -22px; }
 
   .box-breath__phase {
     font-size: var(--text-xl);
