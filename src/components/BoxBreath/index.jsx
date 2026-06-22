@@ -43,7 +43,7 @@ export function BoxBreath() {
     function tick(now) {
       const elapsed = now - startRef.current;
       const t = (elapsed % CYCLE) / SIDE_DURATION;
-      setPhaseIndex(Math.floor(t) % 4);
+      setPhaseIndex(Math.abs(Math.floor(t) % 4));
       setDotPos(getDotPercent(elapsed));
       rafRef.current = requestAnimationFrame(tick);
     }
@@ -52,7 +52,7 @@ export function BoxBreath() {
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
-  const currentPhase = PHASES[phaseIndex];
+  const currentPhase = PHASES[phaseIndex] ?? PHASES[0];
 
   return (
     <div className="box-breath">
